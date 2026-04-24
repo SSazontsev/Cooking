@@ -1,6 +1,27 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    alias(libs.plugins.androidApplication) apply false
-    alias(libs.plugins.jetbrainsKotlinAndroid) apply false
-    alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin) apply false
+    alias(libs.plugins.gradle.versions)
+    alias(libs.plugins.version.catalog.update)
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.compose) apply false
+    alias(libs.plugins.spotless) apply false
+}
+
+apply("${project.rootDir}/buildscripts/toml-updater-config.gradle")
+
+subprojects {
+    apply(plugin = "com.diffplug.spotless")
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        kotlin {
+            target("**/*.kt")
+            targetExclude("${layout.buildDirectory}/**/*.kt")
+            ktlint()
+        }
+        kotlinGradle {
+            target("*.gradle.kts")
+            targetExclude("${layout.buildDirectory}/**/*.kt")
+            ktlint()
+        }
+    }
 }

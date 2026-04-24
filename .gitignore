@@ -25,3 +25,8 @@ replay_pid*
 
 # Firebase config (contains project-specific keys)
 app/google-services.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride

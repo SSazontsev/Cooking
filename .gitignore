@@ -30,3 +30,12 @@ app/google-services.json
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Android / Gradle
+.gradle/
+build/
+.idea/
+*.iml
+local.properties
+/captures/
+.externalNativeBuild/
